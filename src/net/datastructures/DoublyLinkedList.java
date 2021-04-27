@@ -21,13 +21,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package net.datastructures;
-
-import java.util.LinkedList.Node;
-
-//import java.util.LinkedList.Node;
-
-//import java.util.LinkedList;
-//import java.util.LinkedList.Node;
+import java.util.LinkedList;
+import java.util.LinkedList.*;
 
 /**
  * A basic doubly linked list implementation.
@@ -196,20 +191,23 @@ public class DoublyLinkedList<E> {
 
  // TODO Busca na lista e remove o elemento na posicao especificada pelo index
  public E remove(int index) {
-	 int count = 0;
+	   int count = 0;
 	   if (index > size)
 	       return null;
 	   
 	   NodeDouble<E> walk = header.getNext();
 	   while (walk != trailer) {
 	     if (count == index) {
-	         return walk.getElement();
+	         walk.getElement();
+	         walk.setNext(null);
+	         walk.setPrev(null);
 	     }
 	     walk = walk.getNext();
 	     count++;
 	   }
 	   return null;
- }
+	 }
+ 
 
  // TODO Busca na lista e remove o objeto. Retorna true/false
  public boolean remove(E o) { 
@@ -233,15 +231,10 @@ public class DoublyLinkedList<E> {
 
 // TODO Insere o elemento E no posicao especificado por index
 public void add(int index, E element) {
-//     checkPositionIndex(index);
-    NodeDouble<E> o;
-    o = o.get(index);
-	NodeDouble<E> predecessor = o.getPrev();
-    NodeDouble<E> successor = o.getNext();
    if (index == size)
          addLast(element);
      else
-         addBetween(element, predecessor, successor);
+         addBetween(element, get(index -1), get(index +1));
 //     
  }
 

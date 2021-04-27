@@ -48,29 +48,34 @@ public class Carteira_demo {
 
     // Exemplo de uso da classe Carteira    
     public static void main(String[] args) {
+        
+        DoublyLinkedList<CreditCardGratuito> testCards;
+        testCards = new DoublyLinkedList<CreditCardGratuito>();
+        testCards.addLast(new CreditCardGratuito("Joao", "Itau", "34346756756"));
+        testCards.addLast(new CreditCardGratuito("Maria", "BB", "435767789768"));
+        testCards.addLast(new CreditCardGratuito("Giberto", "CEF", "12335769"));
+        
+        System.out.println("Test do get");
+        System.out.println(testCards.get(0));
+        System.out.println(testCards.get(1));
+        System.out.println(testCards.get(2));
+        
+        System.out.println("\n\nTest do indexOf");
+        System.out.println(testCards.indexOf(testCards.get(0)));
+        System.out.println(testCards.indexOf(testCards.get(1)));
+        System.out.println(testCards.indexOf(testCards.get(2)));
 
-        Cliente_demo c;
-        Carteira_demo contas = new Carteira_demo();
-
-        contas.AdicionarConta("Joao", "111111111", "111.111.111-11");
-        c = contas.ObterConta();
-        c.AdicionarCartao("Itau", "34346756756");
-        c.AdicionarCartao("BB", "13241234123424");
-        c.AdicionarCartao("Nubank", "79789785674");
-
-        contas.AdicionarConta("Maria", "2222222222", "222.222.222-22");
-        c = contas.ObterConta();
-        c.AdicionarCartao("Itau", "5686785678578");
-        c.AdicionarCartao("BB", "12342345456547");
-        c.AdicionarCartao("Nubank", "346568789890");
-
-        contas.AdicionarConta("Gilberto", "33333333", "333.333.333-33");
-        c = contas.ObterConta();
-        c.AdicionarCartao("Itau", "1231234234645");
-        c.AdicionarCartao("BB", "23434645765");
-        c.AdicionarCartao("Nubank", "132234435756");
-
-        contas.RemoverConta();
-        contas.MostrarCarteira();
+        System.out.println("\n\nTest do add -- foi adicionado mais um item ao comeco da lista");
+        testCards.add(2, testCards.get(1));
+        System.out.println(testCards);
+        
+        System.out.println("\n\nTest do remove(index) -- foi removido o item de indice 1");
+        testCards.remove(1);
+        System.out.println(testCards);
+        
+        System.out.println("\n\nTest do remove(objeto) -- foi removido o item de indice 2, 3o elemento da lista");
+        testCards.remove(testCards.get(2));
+        System.out.println(testCards);
+        
     }
 }
