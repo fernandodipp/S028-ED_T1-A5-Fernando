@@ -172,13 +172,13 @@ public class DoublyLinkedList<E> {
  public int indexOf(E e) {
      int index = 0;
      if (e == null) {
-         for (NodeDouble<E> i = header; i != null; i = i.getNext()) {
+         for (NodeDouble<E> i = header.getNext(); i != null; i = i.getNext()) {
              if (i.getElement() == null)
                  return index;
              index++;
          }
      } else {
-         for (NodeDouble<E> i = header; i != null; i = i.getNext()) {
+         for (NodeDouble<E> i = header.getNext(); i != null; i = i.getNext()) {
              if (e.equals(i.getElement()))
                  return index;
              index++;
@@ -231,11 +231,16 @@ public class DoublyLinkedList<E> {
 
 // TODO Insere o elemento E no posicao especificado por index
 public void add(int index, E element) {
+	E e = get(index);
+	NodeDouble<E> predecessor = null;
+	NodeDouble<E> successor = null;
+	NodeDouble<E> newest = new NodeDouble<>(e, predecessor, successor);
+	predecessor = predecessor.get(index).setNext(newest);
+	successor = successor.get(index).setPrev(newest);		
    if (index == size)
          addLast(element);
-     else
-         addBetween(element, get(index -1), get(index +1));
-//     
+     else 	 
+    	 addBetween(e, predecessor, successor);    
  }
 
   /**
