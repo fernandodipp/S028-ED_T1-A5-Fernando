@@ -66,7 +66,7 @@ public class Carteira_demo {
         System.out.println(testCards.indexOf(testCards.get(2)));
 
         System.out.println("\n\nTest do add -- foi adicionado mais um item ao comeco da lista");
-        testCards.add(2, testCards.get(0));
+        testCards.add(2, testCards.get(2));
         System.out.println(testCards);
         
         System.out.println("\n\nTest do remove(index) -- foi removido o item de indice 1");

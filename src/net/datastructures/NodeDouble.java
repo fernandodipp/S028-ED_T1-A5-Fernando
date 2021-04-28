@@ -66,7 +66,6 @@ package net.datastructures;
     public void setNext(NodeDouble<E> n) { next = n; }
 
 	public NodeDouble<E> get(int index) {
-		// TODO Auto-generated method stub
 		return null;
 	}
   } //----------- end of nested Node class -----------
