@@ -207,23 +207,29 @@ public class DoublyLinkedList<E>{
 	}
 
 	// TODO Busca na lista e remove o elemento na posicao especificada pelo index
-	public E remove(int index) {
+	public E remove(int index) {  
 		int count = 0;
 		if (index > size)
 			return null;
-
+		
 		NodeDouble<E> walk = header.getNext();
 		while (walk != trailer) {
 			if (count == index) {
-				walk.getElement();
-				walk.setNext(null);
-				walk.setPrev(null);
+				return remove(walk);
 			}
 			walk = walk.getNext();
 			count++;
 		}
 		return null;
-	}
+		/*
+		 * if (index<0 || index >= size) throw new IndexOutOfBoundsException
+		 * ("List index out of bounds"); if (index == 0) { // special case: removing
+		 * first element header = header.getNext(); } else { // removing from elsewhere
+		 * in the list NodeDouble<E> current = header; for (int i = 0; i < index - 1;
+		 * i++) { current = current.getNext(); }
+		 * current.setNext(current.getNext().getNext()); } size--;
+		 */	  
+	   } 
 
 	// TODO Busca na lista e remove o objeto. Retorna true/false
 	public boolean remove(E o) {
@@ -247,18 +253,18 @@ public class DoublyLinkedList<E>{
 
 	// TODO Insere o elemento E no posicao especificado por index
 	public void add(int index, E element) {
-		int pred = index - 1;
-		int succ = index + 1;
-		NodeDouble<E> predecessor = header.get(pred);
-		NodeDouble<E> successor = header.get(succ);
-		if (index == size)
-			addLast(element);
-		else if (predecessor == null)
-			addFirst(element);
-		else
-			addBetween(/*E e, NodeDouble<E> predecessor, NodeDouble<E> successor*/
-							element, predecessor, successor	);
-	}
+		if (index > size)
+			return;
+		
+		int count = 0;
+		NodeDouble<E> walk = header.getNext();
+		while (walk != trailer) {
+			if (count == index) {
+				addBetween(element, walk.getPrev(), walk);
+			}
+			walk=walk.getNext();
+			count++;
+	}}
 
 	/**
 	 * Produces a string representation of the contents of the list. This exists for
